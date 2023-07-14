@@ -12,8 +12,3 @@ resource "digitalocean_database_db" "loadtest" {
   cluster_id = digitalocean_database_cluster.postgres.id
   name       = "loadtest"
 }
-
-resource "digitalocean_database_user" "loadtest" {
-  cluster_id = digitalocean_database_cluster.postgres.id
-  name       = "loadtest_user"
-}

@@ -1,0 +1,8 @@
+pg_host: private-loadtest-postgres-cluster-do-user-1417794-0.b.db.ondigitalocean.com
+pg_port: 25060
+pg_user: doadmin
+pg_database: loadtest
+load_scale: 10
+load_threads: 4
+load_clients: 1
+pg_password: AVNS_l4rK0QrfXxglIu-cjUj

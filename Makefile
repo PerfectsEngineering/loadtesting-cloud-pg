@@ -24,3 +24,6 @@ tf-apply:
 
 tf-destroy:
 	terraform -chdir=$(tf-path) destroy
+
+ansible-run:
+	ansible-playbook -i playbook/hosts playbook/run-test.yml

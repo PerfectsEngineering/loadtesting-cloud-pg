@@ -1,0 +1,33 @@
+---
+- name: Setup server and dependencies
+  hosts: all
+  tasks:
+    - name: Run the equivalent of "apt-get update" as a separate step
+      ansible.builtin.apt:
+        update_cache: yes
+    - name: Install postgres dependency
+      ansible.builtin.apt:
+        pkg:
+          - postgresql
+          - postgresql-contrib
+
+- name: Run the test
+  hosts: all
+  vars_files:
+    - ./db-vars.yml
+  environment:
+    PGPASSWORD: "{{ pg_password }}"
+  tasks:
+    - name: Prepare data set
+      ansible.builtin.shell: |
+        pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
+        -i -s {{ load_scale }} --quiet {{ pg_database }}
+    - name: Run the test
+      register: pgbench_output
+      ansible.builtin.shell: |
+        pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
+        --client={{ load_clients }} --jobs={{ load_threads }} {{ pg_database }}
+    - name: Print the output
+      debug:
+        msg: "{{ pgbench_output.stdout_lines }}"
+      

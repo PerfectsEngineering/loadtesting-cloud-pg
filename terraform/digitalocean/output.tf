@@ -1,16 +1,20 @@
-output "do_db_host" {
+output "db_host" {
     value = digitalocean_database_cluster.postgres.private_host
 }
 
-output "do_db_port" {
+output "db_port" {
     value = digitalocean_database_cluster.postgres.port
 }
 
-output "do_db_user_password" {
-    value = digitalocean_database_user.loadtest.password
+output "db_user_name" {
+    value = digitalocean_database_cluster.postgres.user
+}
+
+output "db_user_password" {
+    value = digitalocean_database_cluster.postgres.password
     sensitive = true
 }
 
-output "do_droplet_public_ip" {
+output "compute_public_ip" {
     value = digitalocean_droplet.runner.ipv4_address
 }
