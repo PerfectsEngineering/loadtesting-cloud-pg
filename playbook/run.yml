@@ -14,7 +14,7 @@
 - name: Run the test
   hosts: all
   vars_files:
-    - ./db-vars.yml
+    - ./vars.yml
   environment:
     PGPASSWORD: "{{ pg_password }}"
   tasks:
