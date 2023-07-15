@@ -33,4 +33,6 @@ resource "google_sql_user" "user" {
 resource "google_sql_database" "loadtest" {
   name     = "loadtest"
   instance = google_sql_database_instance.postgres.name
+
+  depends_on = [google_sql_user.user]
 }
