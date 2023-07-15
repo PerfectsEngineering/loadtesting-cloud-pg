@@ -19,6 +19,32 @@ You need to have the following tools installed on your local machine:
 - ansible
 - make
 
+Also, you'll need to be authenticated to the various cloud providers.
+
+**DigitalOcean**
+
+You'll need an api token and have it exported as an environment variable named `TF_VAR_do_token`.
+
+**Google Cloud**
+
+The easiest approach to authenticate is using `gcloud`.
+```sh
+gcloud auth application-default login
+```
+
+If you don't have gcloud install it from [here](https://cloud.google.com/sdk/docs/install).
+
+Also, if your google cloud project is new, you'll need to enable the following APIs:
+
+```sh
+gcloud services enable compute.googleapis.com
+gcloud services enable sqladmin.googleapis.com
+gcloud services enable servicenetworking.googleapis.com
+```
+
+**AWS**
+
+TBD
 
 ### Setting up Resources
 
@@ -26,7 +52,7 @@ This uses terraform.
 
 Run the following command to create those resources:
 
-```
+```sh
 make tf-apply
 ```
 
@@ -40,6 +66,6 @@ Once the Resources have been completely setup in the particular cloud provider,
 update the ansible target hosts based on the output and run the
 ansible playbook with:
 
-```
+```sh
 make ansible-run
 ```

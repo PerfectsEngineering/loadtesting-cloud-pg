@@ -8,10 +8,11 @@ benchmark:
 		-h $$PGHOST -p 5432 -U $$PGUSER \
 		--client=$${CLIENTS:-10} --jobs=$${THREADS:-4} $$PGDATABASE
 
-infra-path := ./terraform
+override infra-path := ./terraform
 
-tf-path := $(infra-path)/digitalocean
+override tf-path = $(infra-path)/$(provider)
 
+provider = $(shell echo $${PROVIDER:-digitalocean})
 
 tf-init:
 	terraform -chdir=$(tf-path) init
