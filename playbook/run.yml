@@ -28,7 +28,7 @@
       ansible.builtin.shell: |
         pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
         --client={{ load_clients }} --jobs={{ load_threads }} {{ pg_database }}
-      with_sequence: start=1 end=3
+      with_sequence: count=3
     - name: Print the output
       debug:
         msg: "{{ item.stdout_lines }}"

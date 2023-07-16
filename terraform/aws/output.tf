@@ -18,3 +18,7 @@ output "db_user_password" {
 output "compute_public_ip" {
     value = aws_instance.runner.public_ip
 }
+
+output "compute_ssh_user" {
+    value = "root"
+}

@@ -86,11 +86,16 @@ Type `yes` at the prompt after confirming that the right resources will be creat
 
 Once the Resources have been completely set up in the particular cloud provider, **update the Ansible target hosts based on the output**.
 
+- Update `playbook/hosts` to the value of the `compute_public_ip` from terraform. If for aws, update the ansible_user in the file to `ubuntu`; if not, use `root`.
+- Update `playbook/vars.yml` to the values of the other output so the test servers can connect to the database.
+
 Next, run the Ansible playbook with:
 
 ```sh
 make ansible-run
 ```
+
+If run successfully, the output of the pgbench tests will be output to the terminal.
 
 ### Cleaning up Resources
 

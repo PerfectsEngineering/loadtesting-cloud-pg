@@ -14,6 +14,8 @@ resource "google_sql_database_instance" "postgres" {
       private_network                               = google_compute_network.vpc.id
       enable_private_path_for_google_cloud_services = true
     }
+
+    disk_size = 50
   }
 
   # only set because of we want to be able to tear this down easily

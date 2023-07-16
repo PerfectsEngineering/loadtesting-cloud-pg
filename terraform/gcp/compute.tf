@@ -12,13 +12,13 @@ resource "google_compute_firewall" "ssh-rule" {
 
 resource "google_compute_instance" "runner" {
   name         = "loadtest-runner"
-  machine_type = "custom-1-1024"
+  machine_type = "custom-2-4096"
   zone         = var.compute_zone
   tags         = ["bastion-host"]
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+      image = "ubuntu-os-cloud/ubuntu-2204-lts"
     }
   }
 
@@ -33,4 +33,6 @@ resource "google_compute_instance" "runner" {
       # Include this section to give the VM an external IP address
     }
   }
+
+  allow_stopping_for_update = true
 }

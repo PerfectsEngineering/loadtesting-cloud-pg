@@ -18,3 +18,7 @@ output "db_user_password" {
 output "compute_public_ip" {
     value = google_compute_instance.runner.network_interface.0.access_config.0.nat_ip
 }
+
+output "compute_ssh_user" {
+    value = "root"
+}

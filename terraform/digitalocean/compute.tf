@@ -5,7 +5,7 @@ resource "digitalocean_ssh_key" "default" {
 
 resource "digitalocean_droplet" "runner" {
   name   = "loadtest-runner"
-  size   = "s-1vcpu-1gb"
+  size   = "s-2vcpu-4gb"
   image  = "ubuntu-22-04-x64"
   region = var.region
   vpc_uuid = digitalocean_vpc.vpc.id

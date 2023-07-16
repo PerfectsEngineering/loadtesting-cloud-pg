@@ -18,3 +18,7 @@ output "db_user_password" {
 output "compute_public_ip" {
     value = digitalocean_droplet.runner.ipv4_address
 }
+
+output "compute_ssh_user" {
+    value = "root"
+}
