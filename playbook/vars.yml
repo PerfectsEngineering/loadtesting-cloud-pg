@@ -2,7 +2,7 @@ pg_host: loadtest-db20230716124816841700000001.ctoqvom87ywu.eu-west-2.rds.amazon
 pg_port: 5432
 pg_user: loadtest_user
 pg_database: loadtest
-load_scale: 10
-load_threads: 4
-load_clients: 1
+load_scale: 1000
+load_threads: 2
+load_clients: 3
 pg_password: 3e6648a7625700e9

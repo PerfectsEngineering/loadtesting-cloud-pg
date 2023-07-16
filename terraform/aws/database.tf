@@ -12,7 +12,7 @@ resource "aws_db_subnet_group" "postgres" {
 }
 
 resource "aws_db_instance" "postgres" {
-  allocated_storage    = 10
+  allocated_storage    = 50
   db_name              = "loadtest"
   engine               = "postgres"
   engine_version       = "15.2"
