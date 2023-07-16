@@ -8,7 +8,7 @@ resource "google_sql_database_instance" "postgres" {
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
   settings {
-    tier = "db-custom-4-7680"
+    tier = "db-custom-4-16384"
     ip_configuration {
       ipv4_enabled                                  = false
       private_network                               = google_compute_network.vpc.id
