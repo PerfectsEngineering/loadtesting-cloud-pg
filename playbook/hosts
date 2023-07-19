@@ -1,2 +1,2 @@
 [ubuntu-servers]
-34.142.60.197 ansible_user=root
+3.10.107.244 ansible_user=ubuntu

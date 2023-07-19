@@ -5,7 +5,7 @@ resource "aws_key_pair" "default" {
 
 resource "aws_instance" "runner" {
   ami           = "ami-059ddb696446729d4" # Ubuntu 22.04
-  instance_type = "t3.medium" # 2vCPU, 4GB
+  instance_type = "m5.large" # 2vCPU, 8GB
   key_name = aws_key_pair.default.key_name
 
   network_interface {

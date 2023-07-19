@@ -20,5 +20,5 @@ output "compute_public_ip" {
 }
 
 output "compute_ssh_user" {
-    value = "root"
+    value = "ubuntu"
 }

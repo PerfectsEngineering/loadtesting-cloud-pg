@@ -16,7 +16,7 @@ resource "aws_db_instance" "postgres" {
   db_name              = "loadtest"
   engine               = "postgres"
   engine_version       = "15.2"
-  instance_class       = "db.t4g.xlarge" # 4 CPU, 16GB RAM
+  instance_class       = "db.m5.xlarge" # 4 CPU, 16GB RAM
   identifier_prefix    = "loadtest-db"
   
   username             = "loadtest_user"
