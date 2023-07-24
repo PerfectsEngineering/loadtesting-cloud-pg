@@ -23,12 +23,18 @@
       ansible.builtin.shell: |
         pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
         -i -s {{ load_scale }} --quiet {{ pg_database }}
+      vars:
+        load_scale: 100
     - name: Run the test
       register: pgbench_output
       ansible.builtin.shell: |
         pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
-        --client={{ load_clients }} --jobs={{ load_threads }} {{ pg_database }}
-      with_sequence: count=3
+        --client={{ item }} --jobs={{ load_threads }} \
+        --transactions={{ transactions_per_client }} {{ pg_database }}
+      with_sequence: start=2 end=10 stride=2 # increase clients from 2 to 10
+      vars:
+        load_threads: 4
+        transactions_per_client: 100
     - name: Print the output
       debug:
         msg: "{{ item.stdout_lines }}"

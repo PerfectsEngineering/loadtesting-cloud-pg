@@ -3,6 +3,3 @@ pg_port: 5432
 pg_user: loadtest_user
 pg_password: 2d86519b98351203
 pg_database: loadtest
-load_scale: 100
-load_threads: 3
-load_clients: 10
