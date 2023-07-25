@@ -82,12 +82,10 @@ Provide all the required variables or set them as TF_VAR_ prefixed environment v
 
 Type `yes` at the prompt after confirming that the right resources will be created.
 
+Once the Resources have been completely set up in the particular cloud provider. Proceed to the next step.
 ### Running the Tests
 
-Once the Resources have been completely set up in the particular cloud provider, **update the Ansible target hosts based on the output**.
-
-- Update `playbook/hosts` to the value of the `compute_public_ip` from terraform. If for aws, update the ansible_user in the file to `ubuntu`; if not, use `root`.
-- Update `playbook/vars.yml` to the values of the other output so the test servers can connect to the database.
+The `tf-apply` command would have also updated the ansible configuration. Look in `playbook/hosts` and `playbook/vars.yml` to be sure.
 
 Next, run the Ansible playbook with:
 
