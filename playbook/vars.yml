@@ -1,5 +1,5 @@
-pg_host: loadtest-db20230725202853807800000003.ctoqvom87ywu.eu-west-2.rds.amazonaws.com
+pg_host: "192.168.0.3"
 pg_port: 5432
-pg_database: loadtest
 pg_user: loadtest_user
-pg_password: 853b370606437428
+pg_password: c5807759fcf1
+pg_database: loadtest

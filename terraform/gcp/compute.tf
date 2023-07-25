@@ -12,7 +12,7 @@ resource "google_compute_firewall" "ssh-rule" {
 
 resource "google_compute_instance" "runner" {
   name         = "loadtest-runner"
-  machine_type = "custom-2-4096"
+  machine_type = "custom-4-16384"
   zone         = var.compute_zone
   tags         = ["bastion-host"]
 

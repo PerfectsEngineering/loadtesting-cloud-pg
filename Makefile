@@ -14,14 +14,22 @@ override tf-path = $(infra-path)/$(provider)
 
 provider = $(shell echo $${PROVIDER:-digitalocean})
 
+tf = terraform -chdir=$(tf-path)
+
 tf-init:
 	terraform -chdir=$(tf-path) init
 
 tf-plan:
 	terraform -chdir=$(tf-path) plan
 
-tf-apply:
+tf-apply: _tf-apply _setup-ansible
+
+_tf-apply:
 	terraform -chdir=$(tf-path) apply
+
+_setup-ansible:
+	./setup_ansible.sh $(tf-path)
+
 
 tf-destroy:
 	terraform -chdir=$(tf-path) destroy
