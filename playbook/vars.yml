@@ -1,5 +1,5 @@
-pg_host: "192.168.0.3"
-pg_port: 5432
-pg_user: loadtest_user
-pg_password: c5807759fcf1
+pg_host: "private-loadtest-postgres-cluster-do-user-1417794-0.b.db.ondigitalocean.com"
+pg_port: 25060
+pg_user: doadmin
+pg_password: AVNS_h6aI8WT-S0iFo-4cgga
 pg_database: loadtest
