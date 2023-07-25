@@ -95,7 +95,7 @@ Next, run the Ansible playbook with:
 make ansible-run
 ```
 
-If run successfully, the output of the pgbench tests will be output to the terminal.
+If run successfully, the output of the pgbench tests will be in a csv file name `result_<provider>.csv`.
 
 ### Cleaning up Resources
 

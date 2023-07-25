@@ -1,0 +1,7 @@
+TPS,1084.775180,1709.891294,2258.883058,2851.978738,2932.783534
+Average Latency (ms),1.844,2.339,2.656,2.805,3.410
+Initial Connection Time (ms),39.105,80.526,97.702,164.769,183.409
+Number of Clients,2,4,6,8,10
+Number of Threads,2,4,4,4,4
+Transactions Per Client,100,100,100,100,100
+Total Transactions Processed,200/200,400/400,600/600,800/800,1000/1000

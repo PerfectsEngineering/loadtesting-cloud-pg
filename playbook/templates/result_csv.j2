@@ -1,0 +1,28 @@
+{% set ns = namespace(tps=[], latencies=[], connection_times=[], num_clients=[], num_threads=[], txn_per_client=[], txn_processed=[]) %}
+{% for item in pgbench_output.results %}
+  {% set output_lines = item.stdout_lines %}
+  {% for line in output_lines %}
+    {% if 'tps =' in line %}
+      {% set ns.tps = ns.tps + [line.split(' = ')[1]] %}
+    {% elif 'latency average' in line %}
+      {% set ns.latencies = ns.latencies + [line.split(' = ')[1]] %}
+    {% elif 'initial connection time = ' in line %}
+      {% set ns.connection_times = ns.connection_times + [line.split(' = ')[1]] %}
+    {% elif 'number of clients' in line %}
+      {% set ns.num_clients = ns.num_clients + [line.split(': ')[1]] %}
+    {% elif 'number of threads' in line %}
+      {% set ns.num_threads = ns.num_threads + [line.split(': ')[1]] %}
+    {% elif 'number of transactions per client' in line %}
+      {% set ns.txn_per_client = ns.txn_per_client + [line.split(': ')[1]] %}
+    {% elif 'number of transactions actually processed' in line %}
+      {% set ns.txn_processed = ns.txn_processed + [line.split(': ')[1]] %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+TPS,{{ ns.tps | join(',') | replace(' (without initial connection time)', '') }}
+Average Latency (ms),{{ ns.latencies | join(',') | replace(' ms', '') }}
+Initial Connection Time (ms),{{ ns.connection_times | join(',') | replace(' ms', '') }}
+Number of Clients,{{ ns.num_clients | join(',') }}
+Number of Threads,{{ ns.num_threads | join(',') }}
+Transactions Per Client,{{ ns.txn_per_client | join(',') }}
+Total Transactions Processed,{{ ns.txn_processed | join(',') }}

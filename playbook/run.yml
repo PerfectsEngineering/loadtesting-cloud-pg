@@ -35,8 +35,15 @@
       vars:
         load_threads: 4
         transactions_per_client: 100
-    - name: Print the output
+    - name: Debug Output
       debug:
         msg: "{{ item.stdout_lines }}"
       loop: "{{ pgbench_output.results }}"
+    - name: Generate the output
+      ansible.builtin.template:
+        src: ./templates/result_csv.j2
+        dest: "../result_{{ lookup('ansible.builtin.env', 'PROVIDER') }}.csv"
+        lstrip_blocks: true
+      delegate_to: localhost
+      
       
