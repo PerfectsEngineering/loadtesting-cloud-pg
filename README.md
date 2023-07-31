@@ -93,7 +93,7 @@ Next, run the Ansible playbook with:
 make ansible-run
 ```
 
-If run successfully, the output of the pgbench tests will be in a csv file name `result_<provider>.csv`.
+If run successfully, the output of the pgbench tests will be in a csv file name `result/<provider>.csv`.
 
 ### Cleaning up Resources
 

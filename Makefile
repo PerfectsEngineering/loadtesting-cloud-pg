@@ -30,9 +30,14 @@ _tf-apply:
 _setup-ansible:
 	./setup_ansible.sh $(tf-path)
 
-
 tf-destroy:
 	terraform -chdir=$(tf-path) destroy
+
+tf-lint:
+	tflint --recursive
+
+tf-lint-fix:
+	tflint --recursive --fix
 
 ansible-run:
 	ansible-playbook -i playbook/hosts playbook/run.yml
