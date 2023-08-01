@@ -6,7 +6,7 @@ and compare how much difference in performances there are.
 
 ## Result of Load Tests
 
-The results of running these test are published as a blog post here: <TBD>
+The results of running these test are published as a blog post [here](https://blog.perfects.engineering/cloud_postgres_performance_1).
 
 
 ## Running the tests for yourself
