@@ -31,10 +31,11 @@
         pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
         --client={{ item }} --jobs={{ load_threads }} \
         --transactions={{ transactions_per_client }} {{ pg_database }}
-      with_sequence: start=2 end=10 stride=2 # increase clients from 2 to 10
+      with_items: "{{ clients }}"
       vars:
         load_threads: 4
-        transactions_per_client: 100
+        transactions_per_client: 500
+        clients: [2, 4, 6, 8, 10, 100]
     - name: Debug Output
       debug:
         msg: "{{ item.stdout_lines }}"
