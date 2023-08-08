@@ -23,41 +23,67 @@ Also, you'll need to be authenticated to the various cloud providers.
 
 **DigitalOcean**
 
-You'll need an api token and have it exported as an environment variable named `TF_VAR_do_token`.
+<details>
+  <summary>Authentication Instructions</summary>
+  
+  You'll need an api token and have it exported as an environment variable named `TF_VAR_do_token`.
+</details>
 
 **Google Cloud**
 
-The straightforward approach to authenticate is using `gcloud`.
-```sh
-gcloud auth application-default login
-```
+<details>
+  <summary>Authentication Instructions</summary>
 
-If you don't have gcloud install it from [here](https://cloud.google.com/sdk/docs/install).
+  The straightforward approach to authenticate is using `gcloud`.
+  ```sh
+  gcloud auth application-default login
+  ```
 
-Also, if your google cloud project is new, you'll need to enable the following APIs:
+  If you don't have gcloud install it from [here](https://cloud.google.com/sdk/docs/install).
 
-```sh
-gcloud services enable compute.googleapis.com
-gcloud services enable sqladmin.googleapis.com
-gcloud services enable servicenetworking.googleapis.com
-```
+  Also, if your google cloud project is new, you'll need to enable the following APIs:
+
+  ```sh
+  gcloud services enable compute.googleapis.com
+  gcloud services enable sqladmin.googleapis.com
+  gcloud services enable servicenetworking.googleapis.com
+  ```
+</details>
 
 **AWS**
 
-See the various ways you can authenticate AWS [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration).
-The straightforward way will be to create an Access Token (ID and Secret) for a user with 
-enough permissions to provision EC2 and RDS instances and export them as environment variables:
+<details>
+  <summary>Authentication Instructions</summary>
 
-```sh
-export AWS_ACCESS_KEY_ID="<<access_key_id>>"
-export AWS_SECRET_ACCESS_KEY="<<access_key_secret>>"
-```
+  See the various ways you can authenticate AWS [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration).
+  The straightforward way will be to create an Access Token (ID and Secret) for a user with 
+  enough permissions to provision EC2 and RDS instances and export them as environment variables:
+
+  ```sh
+  export AWS_ACCESS_KEY_ID="<<access_key_id>>"
+  export AWS_SECRET_ACCESS_KEY="<<access_key_secret>>"
+  ```
+</details>
+
+**Azure**
+
+<details>
+  <summary>Authentication Instructions</summary>
+
+  Follow the appropriate instruction on the [Azure Website](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) to install the CLI.
+
+  After the `az` CLI tool has been installed, run the following command to authenticate:
+
+  ```sh
+  az login
+  ```
+</details>
 
 ### Setting up Resources
 
 This uses terraform to provision the respective cloud providers resources.
 Depending on which cloud provider you want to test, export a `PROVIDER` environment variable first.
-The possible values are `digitalocean`(default), `gcp` & `aws`. For example:
+The possible values are `digitalocean`(default), `gcp`,`aws` & `azure`. For example:
 
 ```sh
 export PROVIDER=gcp
