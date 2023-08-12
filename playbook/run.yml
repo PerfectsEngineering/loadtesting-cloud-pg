@@ -36,14 +36,28 @@
         load_threads: 4
         transactions_per_client: 100
         clients: [2, 4, 6, 8, 10, 100]
-    - name: Debug Output
-      debug:
-        msg: "{{ item.stdout_lines }}"
-      loop: "{{ pgbench_output.results }}"
     - name: Generate the output
       ansible.builtin.template:
         src: ./templates/result_csv.j2
         dest: "../result/result_{{ lookup('ansible.builtin.env', 'PROVIDER') }}.csv"
+        lstrip_blocks: true
+      delegate_to: localhost
+      # run larger test bases
+    - name: Run the test
+      register: pgbench_output
+      ansible.builtin.shell: |
+        pgbench -h {{ pg_host }} -p {{ pg_port }} -U {{ pg_user }} \
+        --client={{ item }} --jobs={{ load_threads }} \
+        --transactions={{ transactions_per_client }} {{ pg_database }}
+      with_items: "{{ clients }}"
+      vars:
+        load_threads: 4
+        transactions_per_client: 500
+        clients: [2, 4, 6, 8, 10, 100]
+    - name: Generate the output
+      ansible.builtin.template:
+        src: ./templates/result_csv.j2
+        dest: "../result/{{ lookup('ansible.builtin.env', 'PROVIDER') }}.csv"
         lstrip_blocks: true
       delegate_to: localhost
       
