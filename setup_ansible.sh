@@ -1,8 +1,15 @@
 #!/bin/sh
+set -e
 
 echo "Configuring Ansible with Terraform Output"
 
 tf="terraform -chdir=$1"
+
+if [[ -z "$($tf output -raw compute_public_ip)" ]]; then
+  echo "ERROR: No public Ip for load test runner in terraform state."
+  echo "Try re-running terraform apply. Azure sometimes delays before creating IP Address"
+  exit 1
+fi
 
 cat <<EOF > playbook/hosts
 [servers]
