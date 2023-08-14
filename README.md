@@ -109,6 +109,26 @@ Provide all the required variables or set them as TF_VAR_ prefixed environment v
 Type `yes` at the prompt after confirming that the right resources will be created.
 
 Once the Resources have been completely set up in the particular cloud provider. Proceed to the next step.
+
+### Bare Metal Database Setup
+
+SKIP TO THE NEXT STEP IF YOU ARE NOT RUNNING THE BARE METAL (VULTR) PROVIDER OPTION.
+
+Postgres needs to be installed on the bare metal machine.
+First, update the content of [postgresql_cluster/inventory](./postgresql_cluster/inventory) file. Specifically,
+update the IP address of the `[master]` and `[etcd_cluster]` sections to match that of the db_host
+(which can be found in the terraform output from the previous step).
+
+Also, update the `ansible_ssh_private_key_file` value to point to your ssh private_key file.
+
+Next, run:
+
+```sh
+ansible-playbook postgresql_cluster/deploy_pgcluster.yml
+```
+
+Once done, the database machine should have Postgres running and ready to accept connections.
+
 ### Running the Tests
 
 The `tf-apply` command would have also updated the ansible configuration. Look in `playbook/hosts` and `playbook/vars.yml` to be sure.
