@@ -25,3 +25,8 @@ pg_database: loadtest
 EOF
 
 echo "Configuring Ansible Done"
+
+if [[ "$1" == *"vultr"* ]]; then
+  echo "YOU WAIT A FEW MINUTES, BEFORE RUNNING THE ANSIBLE PLAYBOOK"
+  echo "VULTR TAKES SOME MINUTES BEFORE THE MACHINE IS FULLY BOOTED"
+fi

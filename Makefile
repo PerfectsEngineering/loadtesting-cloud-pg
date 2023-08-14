@@ -8,6 +8,10 @@ benchmark:
 		-h $$PGHOST -p 5432 -U $$PGUSER \
 		--client=$${CLIENTS:-10} --jobs=$${THREADS:-4} $$PGDATABASE
 
+psql:
+	docker run --rm -it -e PGPASSWORD=$$PGPASSWORD postgres:15.3 psql \
+		-h $$PGHOST -p 5432 -U $$PGUSER -d $$PGDATABASE
+
 override infra-path := ./terraform
 
 override tf-path = $(infra-path)/$(provider)
