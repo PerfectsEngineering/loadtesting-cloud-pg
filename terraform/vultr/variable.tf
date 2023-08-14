@@ -11,7 +11,8 @@ variable "ssh_key_file_path" {
 }
 
 variable "region" {
-  default = "lhr"
+  # default = "lhr"
+  default = "lax"
   type = string
 }
 
@@ -21,6 +22,6 @@ variable "db_machine_plan" {
     EOF
     type = string
     # default = "voc-g-4c-16gb-80s-amd"
-    # default = "vbm-4c-32gb"
-    default = "vbm-6c-32gb"
+    default = "vbm-4c-32gb"
+    # default = "vbm-6c-32gb"
 }
