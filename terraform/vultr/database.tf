@@ -17,16 +17,7 @@ resource "vultr_firewall_rule" "pg_firewallrule" {
   port = each.value
 }
 
-# resource "vultr_bare_metal_server" "pg_server" {
-#     plan = var.db_machine_plan
-#     region = var.region
-#     os_id = 542 // centos stream 9
-#     hostname = "loadtest-ubuntu"
-#     activation_email = false
-#     ssh_key_ids = [vultr_ssh_key.pg_ssh_key.id]
-# }
-
-resource "vultr_instance" "pg_server" {
+resource "vultr_bare_metal_server" "pg_server" {
   plan = var.db_machine_plan
   region = var.region
   os_id = 542 // centos stream 9
@@ -34,14 +25,32 @@ resource "vultr_instance" "pg_server" {
   activation_email = false
   ssh_key_ids = [vultr_ssh_key.pg_ssh_key.id]
   user_data = <<EOF
-      #cloud-config
+    #cloud-config
 
-      package_upgrade: true
+    package_upgrade: true
 
-      runcmd:
-        - [ firewall-cmd, --permanent, --add-port=5432/tcp ]
-        - [ firewall-cmd, --reload ]
+    runcmd:
+      - [ firewall-cmd, --permanent, --add-port=5432/tcp ]
+      - [ firewall-cmd, --reload ]
   EOF
-
-  firewall_group_id = vultr_firewall_group.pg_firewallgroup.id
 }
+
+# resource "vultr_instance" "pg_server" {
+#   plan = var.db_machine_plan
+#   region = var.region
+#   os_id = 542 // centos stream 9
+#   hostname = "loadtest-ubuntu"
+#   activation_email = false
+#   ssh_key_ids = [vultr_ssh_key.pg_ssh_key.id]
+#   user_data = <<EOF
+#       #cloud-config
+
+#       package_upgrade: true
+
+#       runcmd:
+#         - [ firewall-cmd, --permanent, --add-port=5432/tcp ]
+#         - [ firewall-cmd, --reload ]
+#   EOF
+
+#   firewall_group_id = vultr_firewall_group.pg_firewallgroup.id
+# }

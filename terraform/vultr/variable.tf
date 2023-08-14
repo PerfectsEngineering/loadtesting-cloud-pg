@@ -20,5 +20,7 @@ variable "db_machine_plan" {
     The plan of the machine to use for the database.
     EOF
     type = string
-    default = "voc-g-4c-16gb-80s-amd"
+    # default = "voc-g-4c-16gb-80s-amd"
+    # default = "vbm-4c-32gb"
+    default = "vbm-6c-32gb"
 }

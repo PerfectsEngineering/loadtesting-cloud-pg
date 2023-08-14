@@ -124,7 +124,7 @@ Also, update the `ansible_ssh_private_key_file` value to point to your ssh priva
 Next, run:
 
 ```sh
-ansible-playbook postgresql_cluster/deploy_pgcluster.yml
+make ansible-setup-db
 ```
 
 Once done, the database machine should have Postgres running and ready to accept connections.

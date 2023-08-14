@@ -45,3 +45,6 @@ tf-lint-fix:
 
 ansible-run:
 	ansible-playbook -i playbook/hosts playbook/run.yml
+
+ansible-setup-db:
+	ansible-playbook -i postgresql_cluster/inventory postgresql_cluster/deploy_pgcluster.yml

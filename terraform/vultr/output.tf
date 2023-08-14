@@ -1,6 +1,6 @@
 output "db_host" {
-  # value = vultr_bare_metal_server.pg_server.main_ip
-  value = vultr_instance.pg_server.main_ip
+  value = vultr_bare_metal_server.pg_server.main_ip
+  # value = vultr_instance.pg_server.main_ip
 }
 
 output "db_port" {
